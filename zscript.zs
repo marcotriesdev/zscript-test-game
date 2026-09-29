@@ -57,7 +57,10 @@ class MarcoHUD : BaseStatusBar
 {
 
     HUDFont myfont;
+    HUDFont mybigfont;
+
     MarcoHandler handler;
+
     int kills;
     float timer;
     String killstext;
@@ -67,6 +70,7 @@ class MarcoHUD : BaseStatusBar
     {
         Super.Init();
         myfont = HUDFont.Create(smallfont);
+        mybigfont = HUDFont.Create(bigfont);
         handler = MarcoHandler(EventHandler.Find("MarcoHandler"));
 
     }
@@ -81,13 +85,15 @@ class MarcoHUD : BaseStatusBar
 
 		BeginHud();
         handler = MarcoHandler(EventHandler.Find("MarcoHandler"));
+        PlayerPawn player = players[ConsolePlayer].mo;
         
         killstext = String.Format("\cgKills: \c- \cd %d\c-", handler.TotalKills);
         timertext = String.Format("\cgTime Spent Killing things: %.2f",handler.Timer);
 
 		DrawString(myfont,"\cgTesting \c- \cdHUD \c-",(50, 50));
-        DrawString(myfont,killstext,(50,70));
-        DrawString(myfont,timertext,(50,90));
+        DrawString(myfont,killstext,(50,60));
+        DrawString(myfont,timertext,(50,70));
+        DrawString(mybigfont,String.Format("Health: %d/\cC%d ",player.health,player.GetMaxHealth()),(50,80));
         
 	}
 }
