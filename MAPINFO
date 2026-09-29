@@ -1,0 +1,12 @@
+DoomEdNums
+{
+    12999 = PelonMonster
+}
+
+GameInfo
+{
+    StatusBarClass = "MarcoHUD"
+
+    AddEventHandlers = "MarcoHandler"
+}
+
